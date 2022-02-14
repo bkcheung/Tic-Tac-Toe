@@ -6,12 +6,13 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     border: 1px solid black;
-
     width: 50vw;
+    max-width: 1000px;
 }
 
 .squareDiv {
-    aspect-ratio: 1;
+    padding: 10%;
     border: 1px solid black;
-    min-width: 1px;
+    text-align: center;
+    font-size: 10vw;
 }

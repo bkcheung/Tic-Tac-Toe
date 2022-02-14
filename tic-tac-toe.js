@@ -3,30 +3,22 @@ const gameBoard = (() => {
     
     const board = document.querySelector('#gameBoard');
 
-    this.createDiv = (() => {
+    this.createDiv = ((state) => {
         let squareDiv = document.createElement('div');
         squareDiv.classList.add('squareDiv');
+        state ? squareDiv.innerHTML = state : squareDiv.innerHTML = '';
         board.append(squareDiv);
     })
-    this.createGrid = (() => {
+    
+    this.render = (() => {
         for(i=0; i<9; i++){
-                createDiv();
+            createDiv(gameArray[i]);
         }
     })
 
-    this.render = (() => {
-        console.log(`${gameArray}`);
-    })
-
-    this.init = (() => {
-        createGrid();
-        render();
-    })
-
     return {
-        render:render, 
-        init:init
+        render:render
     }
 })();
 
-gameBoard.init();
+gameBoard.render();
