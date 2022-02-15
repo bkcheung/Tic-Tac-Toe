@@ -1,4 +1,4 @@
-let players = 0;
+
 
 const gameBoard = (() => {
     this.gameArray = [0,0,0,0,0,0,0,0,0];
@@ -26,7 +26,6 @@ const gameBoard = (() => {
 
         if(gameArray[index]===0){
             playerTurn === 1 ? gameArray[index] = "X" : gameArray[index] = "O"
-            // gameArray[index] = 'X';
             console.log(gameArray[index]);
             playerTurn *= -1; //toggle whose turn it is
             render();
@@ -39,24 +38,35 @@ const gameBoard = (() => {
     }
 })();
 
+const players = (() => {
+    let players = 0;
+
+    this._player = (playerName) => {
+        const symbol = players ? 'O' : 'X';
+        players++;
+        return {playerName, symbol};
+    };
+
+    this.addPlayers = () => {
+        let player1 = _player(document.getElementById('player1').value);
+        let player2 = _player(document.getElementById('player2').value)
+        let greeting = `${player1.playerName} ${player1.symbol} versus ${player2.playerName} ${player2.symbol}`;
+    
+        document.getElementById("playerForm").style.display = "none";
+        document.getElementById("playerGreeting").innerHTML = greeting;
+    }
+
+    return {
+        addPlayers
+    }
+})();
+
+
 const game = (() => {
 
-})
+})();
 
-const player = (playerName) => {
-    const symbol = players ? 'O' : 'X';
-    players++;
-    return {playerName, symbol};
-};
 
-const addPlayers = () => {
-    let player1 = player(document.getElementById('player1').value);
-    let player2 = player(document.getElementById('player2').value)
-    let greeting = `${player1.playerName} ${player1.symbol} versus ${player2.playerName} ${player2.symbol}`;
-
-    document.getElementById("playerForm").style.display = "none";
-    document.getElementById("playerGreeting").innerHTML = greeting;
-}
 
 gameBoard.render();
 
