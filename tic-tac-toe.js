@@ -1,3 +1,5 @@
+let players = 0;
+
 const gameBoard = (() => {
     this.gameArray = ['X', 'O', 'O', 'X', 'O', 'O', 'X', 'X', 'O'];
     
@@ -9,7 +11,7 @@ const gameBoard = (() => {
         state ? squareDiv.innerHTML = state : squareDiv.innerHTML = '';
         board.append(squareDiv);
     })
-    
+
     this.render = (() => {
         for(i=0; i<9; i++){
             createDiv(gameArray[i]);
@@ -17,8 +19,19 @@ const gameBoard = (() => {
     })
 
     return {
-        render:render
+        render
     }
 })();
 
+const player = (playerName) => {
+    const symbol = players ? 'X' : 'O';
+    players++;
+
+    return {playerName, symbol};
+};
+
 gameBoard.render();
+
+let bonnie = player('Bonnie');
+let kevin = player('Kevin');
+
