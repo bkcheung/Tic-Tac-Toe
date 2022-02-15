@@ -1,17 +1,9 @@
 let players = 0;
 
-const addPlayers = () => {
-    let player1 = player(document.getElementById('player1').value);
-    let player2 = player(document.getElementById('player2').value)
-    let greeting = `${player1.playerName} ${player1.symbol} versus ${player2.playerName} ${player2.symbol}`;
-
-    document.getElementById("playerForm").style.display = "none";
-    document.getElementById("playerGreeting").innerHTML = greeting;
-}
-
 const gameBoard = (() => {
     this.gameArray = [0,0,0,0,0,0,0,0,0];
-    
+
+    let playerTurn = 1; //1 is player1, -1 is player 2
     let board = document.querySelector('#gameBoard');
 
     this._createDiv = ((index) => {
@@ -31,9 +23,15 @@ const gameBoard = (() => {
         }
     })
     this.changeState = ((index) => {
-        console.log(index);
-        gameArray[index] = 'X';
-        render();
+
+        if(gameArray[index]===0){
+            playerTurn === 1 ? gameArray[index] = "X" : gameArray[index] = "O"
+            // gameArray[index] = 'X';
+            console.log(gameArray[index]);
+            playerTurn *= -1; //toggle whose turn it is
+            render();
+        }
+        
     })
 
     return {
@@ -41,11 +39,24 @@ const gameBoard = (() => {
     }
 })();
 
+const game = (() => {
+
+})
+
 const player = (playerName) => {
     const symbol = players ? 'O' : 'X';
     players++;
     return {playerName, symbol};
 };
+
+const addPlayers = () => {
+    let player1 = player(document.getElementById('player1').value);
+    let player2 = player(document.getElementById('player2').value)
+    let greeting = `${player1.playerName} ${player1.symbol} versus ${player2.playerName} ${player2.symbol}`;
+
+    document.getElementById("playerForm").style.display = "none";
+    document.getElementById("playerGreeting").innerHTML = greeting;
+}
 
 gameBoard.render();
 
