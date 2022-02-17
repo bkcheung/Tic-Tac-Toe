@@ -4,6 +4,7 @@ const gameBoard = (() => {
     this.gameArray = [0,0,0,0,0,0,0,0,0];
 
     let playerTurn = 1; //1 is player1, -1 is player 2
+    let turn = document.getElementById('turn');
     let board = document.querySelector('#gameBoard');
 
     this._createDiv = ((index) => {
@@ -21,16 +22,20 @@ const gameBoard = (() => {
         for(i=0; i<9; i++){
             _createDiv(i);
         }
+        playerTurn === 1? turn.innerHTML = 'X turn' : turn.innerHTML = 'O turn'
+    })
+
+    this.playerSwap = (() => {
+        playerTurn *= -1; //toggle whose turn it is
+
     })
     this.changeState = ((index) => {
 
         if(gameArray[index]===0){
             playerTurn === 1 ? gameArray[index] = "X" : gameArray[index] = "O"
-            console.log(gameArray[index]);
-            playerTurn *= -1; //toggle whose turn it is
+            playerSwap();
             render();
         }
-        
     })
 
     return {
@@ -50,10 +55,10 @@ const players = (() => {
     this.addPlayers = () => {
         let player1 = _player(document.getElementById('player1').value);
         let player2 = _player(document.getElementById('player2').value)
-        let greeting = `${player1.playerName} ${player1.symbol} versus ${player2.playerName} ${player2.symbol}`;
+        let greeting = `${player1.playerName} (${player1.symbol}) versus ${player2.playerName} (${player2.symbol})`;
     
         document.getElementById("playerForm").style.display = "none";
-        document.getElementById("playerGreeting").innerHTML = greeting;
+        document.getElementById("greeting").innerHTML = greeting;
     }
 
     return {
