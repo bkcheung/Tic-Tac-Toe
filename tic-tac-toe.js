@@ -22,6 +22,7 @@ const gameBoard = (() => {
         for(i=0; i<9; i++){
             _createDiv(i);
         }
+        winCheck();
         playerTurn === 1? turn.innerHTML = 'X turn' : turn.innerHTML = 'O turn'
     })
 
@@ -39,7 +40,7 @@ const gameBoard = (() => {
     })
 
     return {
-        render, changeState
+        render, changeState, gameArray
     }
 })();
 
@@ -68,6 +69,36 @@ const players = (() => {
 
 
 const game = (() => {
+    
+    let result = document.getElementById('result');
+
+    this.winCheck = (() => {
+        if (
+            (gameArray[0]==='X' && gameArray[1]==='X' && gameArray[2]==='X') ||
+            (gameArray[3]==='X' && gameArray[4]==='X' && gameArray[5]==='X') ||
+            (gameArray[6]==='X' && gameArray[7]==='X' && gameArray[8]==='X') ||
+            (gameArray[0]==='X' && gameArray[5]==='X' && gameArray[8]==='X') ||
+            (gameArray[2]==='X' && gameArray[5]==='X' && gameArray[6]==='X'))
+            {
+                result.innerHTML = 'X wins';
+            }
+        else if (
+            (gameArray[0]==='O' && gameArray[1]==='O' && gameArray[2]==='O') ||
+            (gameArray[3]==='O' && gameArray[4]==='O' && gameArray[5]==='O') ||
+            (gameArray[6]==='O' && gameArray[7]==='O' && gameArray[8]==='O') ||
+            (gameArray[0]==='O' && gameArray[5]==='O' && gameArray[8]==='O') ||
+            (gameArray[2]==='O' && gameArray[5]==='O' && gameArray[6]==='O'))
+            {
+                result.innerHTML = 'O wins';
+            }
+        else if(!gameArray.includes(0)){ //all of array is full, no wins
+            result.innerHTML = 'Tie!';
+        }
+    })
+
+    return {
+        winCheck
+    }
 
 })();
 
