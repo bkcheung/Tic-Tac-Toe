@@ -34,6 +34,10 @@ body {
     visibility: hidden;
 }
 
+#gameResultContainer.show, #gameResult.show {
+    visibility: visible;
+}
+
 #gameBoard {
     display: grid;
     border: 1px solid black;

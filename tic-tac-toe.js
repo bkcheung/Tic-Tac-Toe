@@ -54,8 +54,8 @@ const players = (() => {
     };
 
     this._hidePlayerForm = (() => {
-        document.getElementById("playerForm").style.display = "none";
-        document.getElementById("popup").style.display = "none";
+        document.getElementById("addPlayer").style.display = "none";
+        document.getElementById("addPlayerContainer").style.display = "none";
     })
 
     this.addPlayers = () => {
@@ -91,7 +91,8 @@ const game = (() => {
             (gameArray[0]==='X' && gameArray[5]==='X' && gameArray[8]==='X') ||
             (gameArray[2]==='X' && gameArray[5]==='X' && gameArray[6]==='X'))
             {
-                winner = 'X'
+                winner = 'X wins!';
+                gameResults(winner);
             }
         else if (
             (gameArray[0]==='O' && gameArray[1]==='O' && gameArray[2]==='O') ||
@@ -103,15 +104,25 @@ const game = (() => {
             (gameArray[0]==='O' && gameArray[5]==='O' && gameArray[8]==='O') ||
             (gameArray[2]==='O' && gameArray[5]==='O' && gameArray[6]==='O'))
             {
-                winner = 'O'
+                winner = 'O wins!';
+                gameResults(winner);
+
             }
         else if(!gameArray.includes(0)){ //all of array is full, no wins
             winner = 'Tie!';
+            gameResults(winner);
         }
     })
 
     this.gameResults = ((winner) => {
-        result.innerHTML = `doop`
+        result.innerHTML = `${winner}`
+        let resultPopup = document.getElementById('gameResultContainer');
+        let resultResult = document.getElementById('gameResult');
+        resultPopup.classList.add('show');
+        resultResult.classList.add('show');
+
+        resultResult.innerHTML = `${winner}`;
+
     })
 
     return {
