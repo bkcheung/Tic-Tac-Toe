@@ -11,15 +11,17 @@
     </head>
     <body>
         <h1>Tic Tac Toe!</h1>
-
-        <form action = "none" id = "playerForm">
-            <label for="player1">Player 1:</label>
-            <input type = "text" id = "player1" name = "name1">     
-            <label for="player2">Player 2:</label>
-            <input type = "text" id = "player2" name = "name2">   
-            <button type = "button" onclick = "addPlayers()">Play!</button>
-        </form>
-
+        <div id = "addPlayerContainer">
+            <form action = "none" id = "addPlayer">
+                <h3>Welcome!</h3><br>
+                <label for="player1">Player 1:</label>
+                <input type = "text" id = "player1" name = "name1"><br>     
+                <label for="player2">Player 2:</label>
+                <input type = "text" id = "player2" name = "name2"><br>
+                <button type = "button" onclick = "addPlayers()">Play!</button>
+            </form>
+        </div>
+        
         <div id = 'gameStatus'>
             <div id = 'greeting'></div>
             <div id = 'result'></div>
@@ -27,6 +29,10 @@
         </div>
          
         <div id = 'gameBoard'></div>
+
+        <div id = "gameResultContainer">
+            <div id = "gameResult"></div>
+        </div>
 
         
         <script src="tic-tac-toe.js" async defer></script>

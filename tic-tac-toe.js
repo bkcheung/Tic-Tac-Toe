@@ -53,13 +53,20 @@ const players = (() => {
         return {playerName, symbol};
     };
 
+    this._hidePlayerForm = (() => {
+        document.getElementById("playerForm").style.display = "none";
+        document.getElementById("popup").style.display = "none";
+    })
+
     this.addPlayers = () => {
         let player1 = _player(document.getElementById('player1').value);
-        let player2 = _player(document.getElementById('player2').value)
-        let greeting = `${player1.playerName} (${player1.symbol}) versus ${player2.playerName} (${player2.symbol})`;
-    
-        document.getElementById("playerForm").style.display = "none";
+        let player2 = _player(document.getElementById('player2').value);
+
+        let greeting = `${player1.playerName} (${player1.symbol}) versus ${player2.playerName} (${player2.symbol})`; 
         document.getElementById("greeting").innerHTML = greeting;
+
+        _hidePlayerForm();   
+        
     }
 
     return {
@@ -70,6 +77,7 @@ const players = (() => {
 
 const game = (() => {
     
+    let winner;
     let result = document.getElementById('result');
 
     this.winCheck = (() => {
@@ -77,23 +85,33 @@ const game = (() => {
             (gameArray[0]==='X' && gameArray[1]==='X' && gameArray[2]==='X') ||
             (gameArray[3]==='X' && gameArray[4]==='X' && gameArray[5]==='X') ||
             (gameArray[6]==='X' && gameArray[7]==='X' && gameArray[8]==='X') ||
+            (gameArray[0]==='X' && gameArray[3]==='X' && gameArray[6]==='X') ||
+            (gameArray[1]==='X' && gameArray[4]==='X' && gameArray[7]==='X') ||
+            (gameArray[2]==='X' && gameArray[5]==='X' && gameArray[8]==='X') ||
             (gameArray[0]==='X' && gameArray[5]==='X' && gameArray[8]==='X') ||
             (gameArray[2]==='X' && gameArray[5]==='X' && gameArray[6]==='X'))
             {
-                result.innerHTML = 'X wins';
+                winner = 'X'
             }
         else if (
             (gameArray[0]==='O' && gameArray[1]==='O' && gameArray[2]==='O') ||
             (gameArray[3]==='O' && gameArray[4]==='O' && gameArray[5]==='O') ||
             (gameArray[6]==='O' && gameArray[7]==='O' && gameArray[8]==='O') ||
+            (gameArray[0]==='O' && gameArray[3]==='O' && gameArray[6]==='O') ||
+            (gameArray[1]==='O' && gameArray[4]==='O' && gameArray[7]==='O') ||
+            (gameArray[2]==='O' && gameArray[5]==='O' && gameArray[8]==='O') ||
             (gameArray[0]==='O' && gameArray[5]==='O' && gameArray[8]==='O') ||
             (gameArray[2]==='O' && gameArray[5]==='O' && gameArray[6]==='O'))
             {
-                result.innerHTML = 'O wins';
+                winner = 'O'
             }
         else if(!gameArray.includes(0)){ //all of array is full, no wins
-            result.innerHTML = 'Tie!';
+            winner = 'Tie!';
         }
+    })
+
+    this.gameResults = ((winner) => {
+        result.innerHTML = `doop`
     })
 
     return {
