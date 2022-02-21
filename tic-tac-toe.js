@@ -44,7 +44,7 @@ const gameBoard = (() => {
     })
 
     return {
-        render, changeState, gameArray, turn, resetGame
+        render, changeState, turn, resetGame
     }
 })();
 
@@ -73,14 +73,11 @@ const players = (() => {
     })
 
     this.addPlayers = (() => {
-        let player1 = _player(input1.value);
-        let player2 = _player(input2.value);
-
-        let greeting = `${player1.playerName} (${player1.symbol}) versus ${player2.playerName} (${player2.symbol})`; 
-        greetingBox.innerHTML = greeting;
+        this.p1 = _player(input1.value);
+        this.p2 = _player(input2.value);
+        greetingBox.innerHTML = `${p1.playerName} (${p1.symbol}) versus ${p2.playerName} (${p2.symbol})`; 
         turn.classList.add('show');
-
-        _hidePlayerForm();   
+        _hidePlayerForm();  
     })
 
     this.resetPlayers = (() => {
@@ -117,7 +114,13 @@ const game = (() => {
             (gameArray[0]==='X' && gameArray[4]==='X' && gameArray[8]==='X') ||
             (gameArray[2]==='X' && gameArray[4]==='X' && gameArray[6]==='X'))
             {
-                winner = 'X wins!';
+                if(p1.playerName){
+                    winner = `${p1.playerName} wins!`
+                }
+                else{
+                    winner = 'X wins!'
+                }
+                
                 gameResults(winner);
             }
         else if (
@@ -130,7 +133,12 @@ const game = (() => {
             (gameArray[0]==='O' && gameArray[4]==='O' && gameArray[8]==='O') ||
             (gameArray[2]==='O' && gameArray[4]==='O' && gameArray[6]==='O'))
             {
-                winner = 'O wins!';
+                if(p2.playerName){
+                    winner = `${p2.playerName} wins!`
+                }
+                else{
+                    winner = 'O wins!'
+                }
                 gameResults(winner);
 
             }
@@ -168,7 +176,5 @@ const game = (() => {
 
 })();
 
-
-
-gameBoard.render();
+gameBoard.render(); //initial render
 
