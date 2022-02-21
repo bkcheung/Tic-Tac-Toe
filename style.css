@@ -56,3 +56,10 @@ body {
     font-size: 10vw;
     padding-top: 20%
 }
+
+/* Stop scaling text and buttons for large screens */
+@media screen and (min-width: 900px) {
+    .squareDiv {
+        font-size: 100px;
+    }
+  }
