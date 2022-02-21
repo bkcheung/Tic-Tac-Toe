@@ -30,11 +30,11 @@ body {
     justify-content: center;
 }
 
-#gameResultContainer, #gameResult, #result {
+#gameResultContainer, #gameResult, #result, #turn {
     visibility: hidden;
 }
 
-#gameResultContainer.show, #gameResult.show, #result.show {
+#gameResultContainer.show, #gameResult.show, #result.show, #turn.show {
     visibility: visible;
 }
 

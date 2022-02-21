@@ -44,7 +44,7 @@ const gameBoard = (() => {
     })
 
     return {
-        render, changeState, gameArray, resetGame
+        render, changeState, gameArray, turn, resetGame
     }
 })();
 
@@ -78,6 +78,7 @@ const players = (() => {
 
         let greeting = `${player1.playerName} (${player1.symbol}) versus ${player2.playerName} (${player2.symbol})`; 
         greetingBox.innerHTML = greeting;
+        turn.classList.add('show');
 
         _hidePlayerForm();   
     })
@@ -86,6 +87,7 @@ const players = (() => {
         players = 0;
         addPlayerForm.reset();
         greetingBox.innerHTML = '';
+        turn.classList.remove('show');
         _showPlayerForm();
         hideResults();
     })
